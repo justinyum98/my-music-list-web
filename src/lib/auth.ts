@@ -34,7 +34,6 @@ export const authOptions: NextAuthOptions = {
               },
             },
             async authorize() {
-              console.log('authorizing test user');
               return {
                 id: 'abcd1234',
                 name: 'John Doe',

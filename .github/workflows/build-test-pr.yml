@@ -9,8 +9,6 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    environment: development
-
     strategy:
       matrix:
         node-version: [18.x]
@@ -30,16 +28,16 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo BASE_URL=${{ secrets.BASE_URL }} >> .env
-          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
-          echo FACEBOOK_CLIENT_ID=${{ secrets.FACEBOOK_CLIENT_ID }} >> .env
-          echo FACEBOOK_CLIENT_SECRET=${{ secrets.FACEBOOK_CLIENT_SECRET }} >> .env
-          echo GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} >> .env
-          echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
-          echo NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} >> .env
-          echo NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} >> .env
-          echo SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} >> .env
-          echo SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} >> .env
+          echo BASE_URL=${{ secrets.TEST_BASE_URL }} >> .env
+          echo DATABASE_URL=${{ secrets.TEST_DATABASE_URL }} >> .env
+          echo FACEBOOK_CLIENT_ID=${{ secrets.TEST_FACEBOOK_CLIENT_ID }} >> .env
+          echo FACEBOOK_CLIENT_SECRET=${{ secrets.TEST_FACEBOOK_CLIENT_SECRET }} >> .env
+          echo GOOGLE_CLIENT_ID=${{ secrets.TEST_GOOGLE_CLIENT_ID }} >> .env
+          echo GOOGLE_CLIENT_SECRET=${{ secrets.TEST_GOOGLE_CLIENT_SECRET }} >> .env
+          echo NEXTAUTH_SECRET=${{ secrets.TEST_NEXTAUTH_SECRET }} >> .env
+          echo NEXTAUTH_URL=${{ secrets.TEST_NEXTAUTH_URL }} >> .env
+          echo SPOTIFY_CLIENT_ID=${{ secrets.TEST_SPOTIFY_CLIENT_ID }} >> .env
+          echo SPOTIFY_CLIENT_SECRET=${{ secrets.TEST_SPOTIFY_CLIENT_SECRET }} >> .env
 
       - name: Create test database
         run: npm run docker:up

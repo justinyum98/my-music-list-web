@@ -13,8 +13,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    environment: production
-
     strategy:
       matrix:
         node-version: [18.x]
@@ -34,16 +32,16 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo BASE_URL=${{ secrets.BASE_URL }} >> .env
-          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
-          echo FACEBOOK_CLIENT_ID=${{ secrets.FACEBOOK_CLIENT_ID }} >> .env
-          echo FACEBOOK_CLIENT_SECRET=${{ secrets.FACEBOOK_CLIENT_SECRET }} >> .env
-          echo GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} >> .env
-          echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
-          echo NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} >> .env
-          echo NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} >> .env
-          echo SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} >> .env
-          echo SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} >> .env
+          echo BASE_URL=${{ secrets.PROD_BASE_URL }} >> .env
+          echo DATABASE_URL=${{ secrets.PROD_DATABASE_URL }} >> .env
+          echo FACEBOOK_CLIENT_ID=${{ secrets.PROD_FACEBOOK_CLIENT_ID }} >> .env
+          echo FACEBOOK_CLIENT_SECRET=${{ secrets.PROD_FACEBOOK_CLIENT_SECRET }} >> .env
+          echo GOOGLE_CLIENT_ID=${{ secrets.PROD_GOOGLE_CLIENT_ID }} >> .env
+          echo GOOGLE_CLIENT_SECRET=${{ secrets.PROD_GOOGLE_CLIENT_SECRET }} >> .env
+          echo NEXTAUTH_SECRET=${{ secrets.PROD_NEXTAUTH_SECRET }} >> .env
+          echo NEXTAUTH_URL=${{ secrets.PROD_NEXTAUTH_URL }} >> .env
+          echo SPOTIFY_CLIENT_ID=${{ secrets.PROD_SPOTIFY_CLIENT_ID }} >> .env
+          echo SPOTIFY_CLIENT_SECRET=${{ secrets.PROD_SPOTIFY_CLIENT_SECRET }} >> .env
 
       - name: Push schema changes
         run: npm run prisma:push

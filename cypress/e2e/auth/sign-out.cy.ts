@@ -2,7 +2,7 @@ describe('Authentication / Sign out', () => {
   it('should sign out', () => {
     cy.signIn();
 
-    cy.get('#avatar-menu-button').click();
+    cy.get('[data-cy="avatar-menu-button"]').click();
     cy.contains('Sign out').click();
     cy.get('form').submit();
 

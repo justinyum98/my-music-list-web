@@ -28,13 +28,13 @@ export default function Header({ user }: HeaderProps) {
       </Link>
       <div className="relative inline-block">
         <button
-          id="avatar-menu-button"
           className="m-2 rounded-full shadow hover:bg-gray-300"
+          data-cy="avatar-menu-button"
           onClick={() => setOpen(!open)}
         >
           <Avatar src={user?.image} width={40} alt="User picture" />
         </button>
-        {open && <DropdownMenu hidden={!open} items={items} />}
+        <DropdownMenu hidden={!open} items={items} />
       </div>
     </header>
   );
