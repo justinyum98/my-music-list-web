@@ -16,9 +16,9 @@ export const Primary: Story = {
   args: {
     hidden: false,
     items: [
-      { children: 'First item' },
-      { children: 'Second item' },
-      { children: 'Third item' },
+      { children: 'First item', href: '/firstitem' },
+      { children: 'Second item', href: '/seconditem' },
+      { children: 'Third item', href: '/thirditem' },
     ],
   },
 };
