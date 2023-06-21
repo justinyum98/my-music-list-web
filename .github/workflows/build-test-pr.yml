@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x, 20.x]
+        node-version: [14.x, 16.x, 18.x]
 
     steps:
       - name: Checkout code
@@ -26,3 +26,35 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Create .env file
+        run: |
+          touch .env
+          echo BASE_URL=${{ secrets.BASE_URL }} >> .env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+          echo FACEBOOK_CLIENT_ID=${{ secrets.FACEBOOK_CLIENT_ID }} >> .env
+          echo FACEBOOK_CLIENT_SECRET=${{ secrets.FACEBOOK_CLIENT_SECRET }} >> .env
+          echo GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} >> .env
+          echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
+          echo NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} >> .env
+          echo NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} >> .env
+          echo SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} >> .env
+          echo SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} >> .env
+
+      - name: Build app
+        run: npm run build
+
+      - name: Create test database
+        run: npm run docker:up
+
+      - name: Push schema changes
+        run: npm run prisma:push
+
+      - name: Start server
+        run: npm run start
+
+      - name: Run Cypress E2E tests
+        uses: cypress-io/github-action@v5
+
+      - name: Drop test database
+        run: npm run docker:down
