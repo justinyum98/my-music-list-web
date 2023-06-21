@@ -39,8 +39,11 @@ jobs:
           echo SPOTIFY_CLIENT_ID=${{ secrets.PROD_SPOTIFY_CLIENT_ID }} >> .env
           echo SPOTIFY_CLIENT_SECRET=${{ secrets.PROD_SPOTIFY_CLIENT_SECRET }} >> .env
 
+      - name: Generate Prisma client
+        run: npx prisma generate
+
       - name: Push schema changes
-        run: npm run prisma:push
+        run: npx prisma db push
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
