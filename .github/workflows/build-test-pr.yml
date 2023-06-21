@@ -30,7 +30,6 @@ jobs:
       - name: Create .env file
         run: |
           touch .env
-          echo NODE_ENV=test
           echo BASE_URL=${{ secrets.BASE_URL }} >> .env
           echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
           echo FACEBOOK_CLIENT_ID=${{ secrets.FACEBOOK_CLIENT_ID }} >> .env
@@ -49,10 +48,7 @@ jobs:
         run: npm run prisma:push
 
       - name: Run Cypress E2E tests
-        uses: cypress-io/github-action@v5
-        with:
-          build: npm run build
-          start: npm run start
+        run: npm run e2e:headless
 
       - name: Drop test database
         run: npm run docker:down
