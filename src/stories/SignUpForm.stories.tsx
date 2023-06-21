@@ -4,9 +4,9 @@ import SignUpForm from '@/components/organisms/SignUpForm';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof SignUpForm> = {
-    title: 'Organisms/SignUpForm',
-    component: SignUpForm,
-    tags: ['autodocs'],
+  title: 'Organisms/SignUpForm',
+  component: SignUpForm,
+  tags: ['autodocs'],
 };
 
 export default meta;

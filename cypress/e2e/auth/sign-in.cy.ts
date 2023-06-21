@@ -1,14 +1,14 @@
 describe('Authentication / Sign in', () => {
-    afterEach(() => {
-        cy.signOut();
-    });
+  afterEach(() => {
+    cy.signOut();
+  });
 
-    it('should sign in with credentials', () => {
-        cy.visit('/');
+  it('should sign in with credentials', () => {
+    cy.visit('/');
 
-        cy.signIn();
+    cy.signIn();
 
-        cy.url().should('include', '/dashboard');
-        cy.getCookie('next-auth.session-token').should('exist');
-    });
+    cy.url().should('include', '/dashboard');
+    cy.getCookie('next-auth.session-token').should('exist');
+  });
 });

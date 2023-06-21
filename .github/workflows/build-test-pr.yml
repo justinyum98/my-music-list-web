@@ -1,60 +1,60 @@
 name: Build and test pull request
 
 on:
-    pull_request:
-        branches:
-            - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
-    build-and-test:
-        runs-on: ubuntu-latest
+  build-and-test:
+    runs-on: ubuntu-latest
 
-        environment: development
+    environment: development
 
-        strategy:
-            matrix:
-                node-version: [14.x, 16.x, 18.x, 20.x]
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x, 18.x, 20.x]
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-            - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v3
-              with:
-                  node-version: ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-            - name: Install dependencies
-              run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-            - name: Create .env file
-              run: |
-                  touch .env
-                  echo BASE_URL=${{ secrets.BASE_URL }} >> .env
-                  echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
-                  echo FACEBOOK_CLIENT_ID=${{ secrets.FACEBOOK_CLIENT_ID }} >> .env
-                  echo FACEBOOK_CLIENT_SECRET=${{ secrets.FACEBOOK_CLIENT_SECRET }} >> .env
-                  echo GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} >> .env
-                  echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
-                  echo NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} >> .env
-                  echo NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} >> .env
-                  echo SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} >> .env
-                  echo SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} >> .env
+      - name: Create .env file
+        run: |
+          touch .env
+          echo BASE_URL=${{ secrets.BASE_URL }} >> .env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
+          echo FACEBOOK_CLIENT_ID=${{ secrets.FACEBOOK_CLIENT_ID }} >> .env
+          echo FACEBOOK_CLIENT_SECRET=${{ secrets.FACEBOOK_CLIENT_SECRET }} >> .env
+          echo GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }} >> .env
+          echo GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }} >> .env
+          echo NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} >> .env
+          echo NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} >> .env
+          echo SPOTIFY_CLIENT_ID=${{ secrets.SPOTIFY_CLIENT_ID }} >> .env
+          echo SPOTIFY_CLIENT_SECRET=${{ secrets.SPOTIFY_CLIENT_SECRET }} >> .env
 
-            - name: Build app
-              run: npm run build
+      - name: Build app
+        run: npm run build
 
-            - name: Create test database
-              run: npm run docker:up
+      - name: Create test database
+        run: npm run docker:up
 
-            - name: Push schema changes
-              run: npm run prisma:push
+      - name: Push schema changes
+        run: npm run prisma:push
 
-            - name: Start server
-              uses: npm run start
+      - name: Start server
+        uses: npm run start
 
-            - name: Run Cypress E2E tests
-              uses: cypress-io/github-action@v5
+      - name: Run Cypress E2E tests
+        uses: cypress-io/github-action@v5
 
-            - name: Drop test database
-              run: npm run docker:down
+      - name: Drop test database
+        run: npm run docker:down

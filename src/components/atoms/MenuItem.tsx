@@ -1,19 +1,19 @@
 'use client';
 
 export type MenuItemProps = {
-    onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    children: React.ReactNode;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  children: React.ReactNode;
 };
 
 export default function MenuItem({ onClick, children }: MenuItemProps) {
-    return (
-        <button
-            className={`w-full py-2 px-4 text-left text-black ${
-                onClick && 'hover:bg-gray-300'
-            }`}
-            onClick={onClick}
-        >
-            {children}
-        </button>
-    );
+  return (
+    <button
+      className={`w-full px-4 py-2 text-left text-black ${
+        onClick && 'hover:bg-gray-300'
+      }`}
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
 }

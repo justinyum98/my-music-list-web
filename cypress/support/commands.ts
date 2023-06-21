@@ -26,25 +26,25 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
 declare global {
-    namespace Cypress {
-        interface Chainable {
-            signIn(): Chainable<void>;
-            signOut(): Chainable<void>;
-        }
+  namespace Cypress {
+    interface Chainable {
+      signIn(): Chainable<void>;
+      signOut(): Chainable<void>;
     }
+  }
 }
 
 // See https://github.com/nextauthjs/next-auth/discussions/2053#discussioncomment-1191016
 Cypress.Commands.add('signIn', () => {
-    cy.log('Signing in');
-    cy.visit('/api/auth/signin');
-    cy.get('form').submit();
+  cy.log('Signing in');
+  cy.visit('/api/auth/signin');
+  cy.get('form').submit();
 });
 
 Cypress.Commands.add('signOut', () => {
-    cy.log('Signing out');
-    cy.visit('/api/auth/signout');
-    cy.get('form').submit();
+  cy.log('Signing out');
+  cy.visit('/api/auth/signout');
+  cy.get('form').submit();
 });
 
 export {};

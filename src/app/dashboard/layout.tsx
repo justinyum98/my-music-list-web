@@ -4,24 +4,24 @@ import StandardPageLayout from '@/components/templates/StandardPageLayout';
 import { authOptions } from '@/lib/auth';
 
 export const metadata = {
-    title: 'Dashboard',
-    description: 'My Music List dashboard',
+  title: 'Dashboard',
+  description: 'My Music List dashboard',
 };
 
 type DashboardLayoutProps = {
-    children: React.ReactNode;
+  children: React.ReactNode;
 };
 
 export default async function DashboardLayout({
-    children,
+  children,
 }: DashboardLayoutProps) {
-    const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
-    if (!session) {
-        redirect('/api/auth/signin');
-    }
+  if (!session) {
+    redirect('/api/auth/signin');
+  }
 
-    return (
-        <StandardPageLayout user={session.user}>{children}</StandardPageLayout>
-    );
+  return (
+    <StandardPageLayout user={session.user}>{children}</StandardPageLayout>
+  );
 }
