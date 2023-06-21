@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import InputLabel from '../components/atoms/InputLabel';
+import InputLabel from '@/components/atoms/InputLabel';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof InputLabel> = {

@@ -1,9 +1,9 @@
 'use client';
 import { RegisterOptions, useForm } from 'react-hook-form';
-import { EMAIL_REGEX, PASSWORD_REGEX, USERNAME_REGEX } from '../../utils/regex';
-import FormTextField from '../molecules/FormTextField';
-import Button from '../atoms/Button';
-import Link from '../atoms/Link';
+import { EMAIL_REGEX, PASSWORD_REGEX, USERNAME_REGEX } from '@/lib/regex';
+import FormTextField from '@/components/molecules/FormTextField';
+import Button from '@/components/atoms/Button';
+import Link from '@/components/atoms/Link';
 
 type SignUpFormProps = {};
 

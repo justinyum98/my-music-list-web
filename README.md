@@ -43,6 +43,8 @@ _(TODO: Insert screenshots, GIFs, and videos here)_
     -   [Storybook](https://storybook.js.org/) (for testing UI components in isolation)
     -   [Docker](https://www.docker.com/) (for provisioning local database server instances for local development and testing)
 
+![High-Level System Diagram](https://www.dropbox.com/s/st92swdxlgoiypo/MML%20System%20Diagram.drawio.png?raw=1)
+
 ## Project Purpose
 
 Simply put, I love music: listening to it, making it, and playing it. Through music, I've made countless invaluable connections with other music enjoyers.
@@ -78,8 +80,8 @@ See my Trello [project board](https://trello.com/b/xYf4h4Yz).
 
 ### Planned for future
 
-- [ ] Write reviews on items in their list
-- [ ] Social interaction, users can
-  - [ ] Follow each other
-  - [ ] Comment on reviews
-  - [ ] Upvote reviews/comments
+-   [ ] Write reviews on items in their list
+-   [ ] Social interaction, users can
+    -   [ ] Follow each other
+    -   [ ] Comment on reviews
+    -   [ ] Upvote reviews/comments

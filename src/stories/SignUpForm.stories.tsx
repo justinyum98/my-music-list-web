@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import SignUpForm from '../components/organisms/SignUpForm';
+import SignUpForm from '@/components/organisms/SignUpForm';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction
 const meta: Meta<typeof SignUpForm> = {

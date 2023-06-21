@@ -1,7 +1,7 @@
 import { RegisterOptions } from 'react-hook-form';
-import HelperText from '../atoms/HelperText';
-import InputLabel from '../atoms/InputLabel';
-import TextInput from '../atoms/TextInput';
+import HelperText from '@/components/atoms/HelperText';
+import InputLabel from '@/components/atoms/InputLabel';
+import TextInput from '@/components/atoms/TextInput';
 
 type FormTextFieldProps = {
     name: string;

@@ -25,13 +25,26 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+declare global {
+    namespace Cypress {
+        interface Chainable {
+            signIn(): Chainable<void>;
+            signOut(): Chainable<void>;
+        }
+    }
+}
+
+// See https://github.com/nextauthjs/next-auth/discussions/2053#discussioncomment-1191016
+Cypress.Commands.add('signIn', () => {
+    cy.log('Signing in');
+    cy.visit('/api/auth/signin');
+    cy.get('form').submit();
+});
+
+Cypress.Commands.add('signOut', () => {
+    cy.log('Signing out');
+    cy.visit('/api/auth/signout');
+    cy.get('form').submit();
+});
+
+export {};
