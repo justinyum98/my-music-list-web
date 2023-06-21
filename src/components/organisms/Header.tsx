@@ -16,8 +16,8 @@ export default function Header({ user }: HeaderProps) {
 
   const items: MenuItemProps[] = [
     {
+      href: '/api/auth/signout',
       children: 'Sign out',
-      onClick: () => signOut(),
     },
   ];
 

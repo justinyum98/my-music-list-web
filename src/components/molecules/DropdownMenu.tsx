@@ -12,8 +12,8 @@ export default function DropdownMenu({ hidden, items }: DropdownMenuProps) {
         hidden ? 'hidden' : 'block'
       }`}
     >
-      {items.map(({ children, onClick }, index) => (
-        <MenuItem key={index} onClick={onClick}>
+      {items.map(({ href, children }, index) => (
+        <MenuItem key={index} href={href}>
           {children}
         </MenuItem>
       ))}

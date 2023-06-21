@@ -1,19 +1,17 @@
 'use client';
+import Link from '@/components/atoms/Link';
 
 export type MenuItemProps = {
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  href: string;
   children: React.ReactNode;
 };
 
-export default function MenuItem({ onClick, children }: MenuItemProps) {
+export default function MenuItem({ href, children }: MenuItemProps) {
   return (
-    <button
-      className={`w-full px-4 py-2 text-left text-black ${
-        onClick && 'hover:bg-gray-300'
-      }`}
-      onClick={onClick}
-    >
-      {children}
-    </button>
+    <div className="w-full px-4 py-2 text-left hover:bg-gray-300">
+      <Link href={href} className="text-black">
+        {children}
+      </Link>
+    </div>
   );
 }
