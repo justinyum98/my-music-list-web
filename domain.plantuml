@@ -1,0 +1,28 @@
+@startuml
+
+interface Item {
+
+}
+
+class Album implements Item {
+    +Artist: Artist
+    +Tracks: List<Track>
+}
+Album "one" --o "many" Track
+Album "one" --o "many" Artist
+
+class Artist implements Item {
+    +Name: string
+}
+
+class Track implements Item {
+    +Name: string
+}
+
+class Review {
+    +Item: Item
+    +Rating: int
+    +Content: string
+}
+Review::Item --> Item
+@enduml
